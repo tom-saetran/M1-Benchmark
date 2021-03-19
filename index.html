@@ -6,25 +6,25 @@
         ---2) Create a heading
         ---3) Create an ordered list
         ---4) Create a table with 5 columns and 4 rows
-        5) Add an image to each second cell of every row
-        6) Add a anchor link for every image
-        7) Merge together 2 table cells
-        8) Divide the page using a horizontal line
-        9) Create a container with a nested paragraph and a nested unordered list
-        10) Create a footer with some information about the page creator 
+        ---5) Add an image to each second cell of every row
+        ---6) Add a anchor link for every image
+        ---7) Merge together 2 table cells
+        ---8) Divide the page using a horizontal line
+        ---9) Create a container with a nested paragraph and a nested unordered list
+        ---10) Create a footer with some information about the page creator 
 
         CSS EXERCISES
 
         ---11) Give a maximum width to the body and center it in the page
         ---12) Set every h1 to be centered
-        13) Change the color of each link in the page
-        14) Create a class with a border
-        15) Set table to have rounded corners
-        16) Add margin between every paragraph
-        17) Create a class which change font size and boldness
-        18) Create a class to hide a content
-        19) Add a green border to each td
-        20) Add a dotted red border to each tr (note: tr does not accept a border property ;-) )
+        ---13) Change the color of each link in the page
+        ---14) Create a class with a border
+        ---15) Set table to have rounded corners
+        ---16) Add margin between every paragraph
+        ---17) Create a class which change font size and boldness
+        ---18) Create a class to hide a content
+        ---19) Add a green border to each td
+        ---20) Add a dotted red border to each tr (note: tr does not accept a border property ;-) )
 
         JS EXERCISES
 
@@ -78,13 +78,47 @@
                 margin: 0 auto;
             }
 
-            h1 {
-                text-align: center;
+            h1 { text-align: center; }
+            .border { border: 2px solid red; }
+            table {
+                border-collapse: collapse;
+                border-radius: 5px;
+            }
+            tr { border: 2px dotted red; }
+            td { border: 1px dotted green; }
+
+            .hidden { display: none; }
+
+            a:link {
+                color: orange;
+                background-color: transparent;
+                text-decoration: none;
             }
 
-            .border {
-                border: 2px solid red;
+            a:visited {
+                color: cyan;
+                background-color: transparent;
+                text-decoration: none;
             }
+
+            a:hover {
+                color: blue;
+                background-color: transparent;
+                text-decoration: underline;
+            }
+
+            a:active {
+                color: greenyellow;
+                background-color: transparent;
+                text-decoration: underline;
+            }
+
+            .fontchange {
+                font-weight: larger;
+                font-size: smaller;
+            }
+
+            p { margin: 20px; }
         </style>
         <title>M1-Benchmark</title>
     </head>
@@ -103,29 +137,28 @@
         <table ID="manualtable">
             <tr>
                 <td>A1</td>
-                <td>B1</td>
-                <td>C1</td>
+                <td><a href="https://strive.school"><img src="https://s3.eu-west-1.amazonaws.com/eduflow-production/institutions-logos/7554045952466.png" alt="Strive Logo" width="50px" height="50px"></a></td>
+                <td><a href="https://strive.school">C1</a></td>
                 <td>D1</td>
                 <td>E1</td>
             </tr>
             <tr>
                 <td>A2</td>
-                <td>B2</td>
-                <td>C2</td>
+                <td><a href="https://strive.school"><img src="https://s3.eu-west-1.amazonaws.com/eduflow-production/institutions-logos/7554045952466.png" alt="Strive Logo" width="50px" height="50px"></a></td>
+                <td><a href="https://strive.school">C2</a></td>
                 <td>D2</td>
                 <td>E2</td>
             </tr>
             <tr>
                 <td>A3</td>
-                <td>B3</td>
-                <td>C3</td>
-                <td>D3</td>
-                <td>E3</td>
+                <td><a href="https://strive.school"><img src="https://s3.eu-west-1.amazonaws.com/eduflow-production/institutions-logos/7554045952466.png" alt="Strive Logo" width="50px" height="50px"></a></td>
+                <td><a href="https://strive.school">C3</a></td>
+                <td colspan="2">D3</td>
             </tr>
             <tr>
                 <td>A4</td>
-                <td>B4</td>
-                <td>C4</td>
+                <td><a href="https://strive.school"><img src="https://s3.eu-west-1.amazonaws.com/eduflow-production/institutions-logos/7554045952466.png" alt="Strive Logo" width="50px" height="50px"></a></td>
+                <td><a href="https://strive.school">C4</a></td>
                 <td>D4</td>
                 <td>E4</td>
             </tr>
@@ -133,9 +166,99 @@
 
         <hr/>
 
+        <div id="container">
+            <p>I am paragraph!</p>
+            <ul>
+                <li>I</li>
+                <li>am</li>
+                <li>unordered</li>
+            </ul>
+        </div>
+
+        <hr/>
+
+        <footer>
+            <p>I am a footer, feet goes here</p>
+        </footer>
+
     </body>
 
     <script>
+        let x = "John", y = "Doe"
+        console.log(x + " <> " + y)
+
+        let myObject = {
+            name: "i am name",
+            surname: "i am surname",
+            email: "i@am.email"
+        }
+
+        delete myObject.email
+
+        let myStringArray = ["i", "am", "a", "string", "array", "with", "length", "of", "ten", "elements"]
+        myStringArray.forEach(element => {
+            console.log(element)
+        })
+
+        let random100Array = []
+        for (let i = 0; i < 100; i++) {
+            random100Array.push(Math.random() * 100)    
+        }
+
+        const getMaxAndMin = () => {
+            let min = 9999, max = 0
+            random100Array.forEach(element => {
+                if (element < min)
+                    min = element
+                if (element > max)
+                    max = element
+            })
+            return [min, max]
+        }
+        console.log(getMaxAndMin())
+
+        let arrayOfArrays = []
+        for (let i = 0; i < 10; i++) {
+            let innerArray = []
+            for (let j = 0; j < 10; j++) {
+                innerArray.push(Math.random() * 10)
+            }
+            arrayOfArrays.push(innerArray)
+        }
         
+        const longestArray = (array1, array2) => {
+            return array1.length >= array2.length ? array1 : array2
+        }
+
+        const longestSummedArray = (array1, array2) => {
+            let sumArray1 = 0
+            let sumArray2 = 0
+            array1.forEach(val => { sumArray1 += val })
+            array2.forEach(val => { sumArray2 += val })
+            return sumArray1 >= sumArray2 ? array1 : array2
+        }
+
+        let containerElement = document.getElementById("container")
+        let tdElements = document.getElementsByTagName("td")
+        for (const element of tdElements) { console.log(element.innerText) }
+
+        const changeHeading = (newHeading) => { document.getElementsByTagName("h1")[0].innerText = newHeading }
+        const addRow = () => { document.getElementById("manualtable").appendChild(document.createElement("tr")) }
+        const addTestClassToRows = () => { for (const row of document.getElementsByTagName("tr")) { row.classList.add("test") } }
+        const setLinkBGRed = () => { for (const a of document.getElementsByTagName("a")) { a.style.backgroundColor = "red" } }
+
+        window.onload = () => { console.log("Page loaded") }
+        
+        /*DOM
+        31) Get element with ID "container" from the page
+        32) Get every "td" from the page
+        33) Create a cycle that prints the text inside every td of the page
+        34) Write a function to change the heading of the page
+        35) Write a function to add an extra row to the table
+        36) Write a function to add the class "test" to each row in the table
+        37) Write a function to add a red background to every link in the page
+        38) Console log "Page loaded" when the page is correctly loaded
+        39) Write a function to add new items to a UL
+        40) Write a function to empty a list */
     </script>
 </html>
