@@ -54,16 +54,16 @@
 
         EXTRA 
 
-        41) Add an eventListener to alert when the mouse is over a link, displaying the URL
-        42) Add a button to hide every image on the page
-        43) Add a button to hide and show the table from the page
-        44) Write a function to sum every number inside the TD (if the content is numeric)
-        45) Delete the last letter from the title each time the user clicks on it
-        46) Change a single TD background color when the user clicks on it
-        47) Add a button DELETE, on click it should delete a random TD from the page
-        48) Add a pink border to a cell when the mouse is over it
-        49) Write a function to add a table with 4 rows and 3 columns programmatically
-        50) Write a function to remove the table from the page
+        ---41) Add an eventListener to alert when the mouse is over a link, displaying the URL
+        ---42) Add a button to hide every image on the page
+        ---43) Add a button to hide and show the table from the page
+        ---44) Write a function to sum every number inside the TD (if the content is numeric)
+        ---45) Delete the last letter from the title each time the user clicks on it
+        ---46) Change a single TD background color when the user clicks on it
+        ---47) Add a button DELETE, on click it should delete a random TD from the page
+        ---48) Add a pink border to a cell when the mouse is over it
+        ---49) Write a function to add a table with 4 rows and 3 columns programmatically
+        ---50) Write a function to remove the table from the page
     -->
 
 <!DOCTYPE html>
@@ -84,8 +84,19 @@
                 border-collapse: collapse;
                 border-radius: 5px;
             }
-            tr { border: 2px dotted red; }
-            td { border: 1px dotted green; }
+            tr { border: 3px dotted red; }
+            td { 
+                border: 2px dotted green;
+                padding: 5px;
+            }
+
+            td:hover {
+                border: 2px solid pink;
+            }
+
+            td::after {
+                border-color: 2px dotted green;
+            }
 
             .hidden { display: none; }
 
@@ -181,6 +192,15 @@
 
         <input type="button" value="Hide Images" onclick="hideImages()">
         <input type="button" value="Toggle Table View" onclick="toggleTableView()">
+        <input type="button" value="Delete Random TD" onclick=deleteRandomTD()>
+        <input type="button" value="Create Table" onclick="createTable()">
+        <input type="button" value="Delete Table" onclick="deleteTable()">
+        
+        <hr/>
+
+        <table id="algotable"></table>
+
+        <hr/>
         
         <footer>
             <p>I am a footer, feet goes here</p>
@@ -201,9 +221,9 @@
         delete myObject.email
 
         let myStringArray = ["i", "am", "a", "string", "array", "with", "length", "of", "ten", "elements"]
-        myStringArray.forEach(element => {
-            console.log(element)
-        })
+        for (const string of myStringArray) {
+            console.log(string)
+        }
 
         let random100Array = []
         for (let i = 0; i < 100; i++) {
@@ -231,9 +251,7 @@
             arrayOfArrays.push(innerArray)
         }
         
-        const longestArray = (array1, array2) => {
-            return array1.length >= array2.length ? array1 : array2
-        }
+        const longestArray = (array1, array2) => { return array1.length >= array2.length ? array1 : array2 }
 
         const longestSummedArray = (array1, array2) => {
             let sumArray1 = 0
@@ -257,9 +275,10 @@
         const addToList = (input) => { document.getElementById("ulist").appendChild(document.createElement("li")).innerText = input }
         const emptyList = (refId) => { document.getElementById(refId).remove() }
 
-        for (const a of document.getElementsByTagName("a")) { a.onclick = () => {alert("Link: " + a.href)} }
+        for (const a of document.getElementsByTagName("a")) { a.onmouseover = () => {alert("Link: " + a.href)} }
         const hideImages = () => { for (const image of document.getElementsByTagName("img")) { image.style.display = "none" } }
         const toggleTableView = () => { document.getElementById("manualtable").hidden = !document.getElementById("manualtable").hidden }
+
         const sumCells = (tableRef) => {
             let _ = 0
             for (const cell of tableRef.getElementsByTagName("td")) {
@@ -272,17 +291,28 @@
 
         document.getElementsByTagName("h1")[0].onclick = () => { document.getElementsByTagName("h1")[0].innerText = document.getElementsByTagName("h1")[0].innerText.slice(0, -1) }
 
-        /*DOM
+        for (const td of document.getElementsByTagName("td")) { td.onclick = () => { td.style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16) } }
 
-        ---41) Add an eventListener to alert when the mouse is over a link, displaying the URL
-        ---42) Add a button to hide every image on the page
-        ---43) Add a button to hide and show the table from the page
-        ---44) Write a function to sum every number inside the TD (if the content is numeric)
-        ---45) Delete the last letter from the title each time the user clicks on it
-        46) Change a single TD background color when the user clicks on it
-        47) Add a button DELETE, on click it should delete a random TD from the page
-        48) Add a pink border to a cell when the mouse is over it
-        49) Write a function to add a table with 4 rows and 3 columns programmatically
-        50) Write a function to remove the table from the page */
+        const deleteRandomTD = () => { try { document.querySelectorAll("#manualtable td")[Math.floor(Math.random() * document.querySelectorAll("#manualtable td").length)].remove() } catch {} }
+        
+        const createTable = () => {
+            let table = document.getElementById("algotable")
+            let parent = document.createElement("div")
+            let [maxX, maxY] = [4, 3]
+            for (let y = 0; y < maxY; y++) {
+                let row = document.createElement("tr")
+                for (let x = 0; x < maxX; x++) {
+                    let col = document.createElement("td")
+                    row.appendChild(col)
+                }
+                parent.appendChild(row)
+            }
+            table.appendChild(parent)
+        }
+
+        const deleteTable = () => {
+            let parent = document.getElementById("algotable")
+            try {parent.lastChild.remove()} catch {}
+        }
     </script>
 </html>
